@@ -1,57 +1,48 @@
-import { View, Text, Button, StyleSheet } from "react-native";
-import { Link, Stack, useNavigation } from "expo-router";
+import { View, Text, Pressable, StyleSheet } from "react-native";
+import { Link } from "expo-router";
 
 export default function Home() {
-  const navigation = useNavigation();
-
-  const handHideHeader = () => {
-    navigation.setOptions({ headerShown: false });
-  };
-  const ShowHeader = () => {
-    navigation.setOptions({ headerShown: true });
-  };
 
   return (
-    <View>
-      <Stack.Screen
-        options={{
-          title: "SENAI",
-          headerRight: () => (
-            <Button
-                onPress={() => alert('Olá, aula de Mobile')}
-                title="Info"
-                color="#fff"
-            /> 
-          ),
-          headerStyle: {
-            backgroundColor: "#52057B",
-          },
-          headerTintColor: "#fff",
-        }}
-      />
-      <Button title="Ocultar Header" onPress={handHideHeader} />
-      <Button title="Mostrar" onPress={ShowHeader} />
+    <View style={styles.container}>
+     <Link href="sobre" asChild>
+     <Pressable style={styles.button}>
+      <Text style={styles.buttonText}>Ir para a sobre</Text>
+      </Pressable>
+     </Link>
 
-      <Link style={styles.link} href="/sobre">Ir para Home</Link>
+     <Link href="/(aux)/termos">Termos de uso</Link>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
+  container: {
+    flexGrow: 1,
+    padding: 20,
+    backgroundColor: '#f5f5f5',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+
     title: {
         fontSize: 24,
-        fontWeight: 'bold'
-    },
-    link: {
-        backgroundColor: '#52057B',
-        padding: 10,
-        margin: 20,
         fontWeight: 'bold',
-        color: '#fff',
-    }
+        marginBottom: 20
+    },
+
+    button: {
+        backgroundColor: '#52057B',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+    },
 });
